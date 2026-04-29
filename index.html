@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara Consulting | Türkiye Oturum & Vatandaşlık Danışmanlığı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #1a3c6b;
+            --navy-dark: #0d2444;
+            --orange: #e8920a;
+            --orange-light: #f5a623;
+            --text: #2c2c2c;
+            --text-light: #666;
+            --bg-light: #f8f9fc;
+            --border: #e8eef7;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            z-index: 1000; height: 70px;
+        }
+
+        .nav-logo { font-size: 1.4rem; font-weight: 800; color: var(--navy); text-decoration: none; }
+        .nav-logo span { color: var(--orange); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--navy); }
+
+        .lang-switcher { display: flex; gap: 6px; }
+        .lang-btn {
+            padding: 5px 12px; border: 2px solid var(--navy);
+            background: transparent; color: var(--navy);
+            border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; transition: all 0.2s;
+        }
+        .lang-btn.active, .lang-btn:hover { background: var(--navy); color: white; }
+
+        .nav-cta {
+            background: var(--orange); color: white;
+            padding: 10px 20px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+            display: flex; align-items: center;
+            padding: 100px 40px 60px;
+            position: relative; overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute; top: 0; right: 0;
+            width: 50%; height: 100%;
+            background: rgba(255,255,255,0.03);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;
+        }
+
+        .hero-left { position: relative; z-index: 1; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(232,146,10,0.15); color: var(--orange-light);
+            padding: 8px 18px; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 600;
+            border: 1px solid rgba(232,146,10,0.3);
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem; font-weight: 800; color: white;
+            line-height: 1.2; margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: var(--orange-light); }
+
+        .hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.8);
+            margin-bottom: 35px; line-height: 1.8; max-width: 500px;
+        }
+
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+
+        .btn-orange {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--orange); color: white;
+            padding: 14px 28px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 1rem;
+            transition: all 0.3s; box-shadow: 0 4px 20px rgba(232,146,10,0.3);
+        }
+        .btn-orange:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; color: white;
+            padding: 14px 28px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.4); transition: all 0.3s;
+        }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+        .hero-langs {
+            display: flex; gap: 20px; flex-wrap: wrap;
+        }
+        .hero-lang {
+            display: flex; align-items: center; gap: 6px;
+            color: rgba(255,255,255,0.7); font-size: 0.9rem;
+        }
+        .hero-lang span { font-size: 1.3rem; }
+
+        .hero-right { position: relative; z-index: 1; }
+
+        .hero-photo-wrap {
+            position: relative; display: inline-block; width: 100%;
+        }
+
+        .hero-photo {
+            width: 100%; max-width: 400px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            object-fit: cover; aspect-ratio: 3/4;
+            display: block; margin: 0 auto;
+            border: 4px solid rgba(255,255,255,0.15);
+        }
+
+        .hero-photo-badge {
+            position: absolute; bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            background: white; color: var(--navy);
+            padding: 12px 22px; border-radius: 50px;
+            font-size: 0.88rem; font-weight: 700;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            white-space: nowrap; text-align: center;
+            display: flex; flex-direction: column; gap: 3px;
+        }
+
+        .hero-photo-badge span:first-child { color: var(--orange); font-size: 0.8rem; }
+
+        .hero-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px; padding: 35px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-card h3 {
+            color: white; font-size: 1.1rem; font-weight: 700;
+            margin-bottom: 20px; padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .hero-service-list { list-style: none; }
+        .hero-service-list li {
+            display: flex; align-items: center; gap: 12px;
+            color: rgba(255,255,255,0.85); font-size: 0.95rem;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .hero-service-list li:last-child { border-bottom: none; }
+        .hero-service-list li .check {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: var(--orange); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 0.7rem; flex-shrink: 0;
+        }
+
+        /* ── STATS ── */
+        .stats {
+            background: white;
+            padding: 50px 40px;
+            display: flex; justify-content: center; gap: 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+        }
+
+        .stat-item {
+            text-align: center; padding: 0 60px;
+            border-right: 1px solid var(--border);
+        }
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--navy); display: block; }
+        .stat-label { color: var(--text-light); font-size: 0.9rem; margin-top: 4px; }
+
+        /* ── SECTIONS ── */
+        .section { padding: 90px 40px; }
+        .section-alt { background: var(--bg-light); }
+
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+
+        .section-header { text-align: center; margin-bottom: 55px; }
+
+        .section-tag {
+            display: inline-block; background: #e8eef7; color: var(--navy);
+            padding: 5px 16px; border-radius: 20px;
+            font-size: 0.78rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;
+        }
+
+        .section-header h2 { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 14px; }
+        .section-header p { color: var(--text-light); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+
+        /* ── SERVICES ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white; border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(26,60,107,0.15);
+            border-color: var(--navy);
+        }
+
+        .service-img {
+            width: 100%; height: 180px;
+            object-fit: cover; display: block;
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover .service-img { transform: scale(1.04); }
+
+        .service-body { padding: 25px 28px; }
+
+        .service-icon-wrap {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--bg-light); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 14px;
+        }
+
+        .service-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .service-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.75; }
+
+        .service-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--orange); font-weight: 600; font-size: 0.88rem;
+            text-decoration: none; margin-top: 14px;
+            transition: gap 0.2s;
+        }
+        .service-link:hover { gap: 10px; }
+
+        /* ── VISUAL BANNER ── */
+        .visual-banner {
+            position: relative; height: 420px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .visual-banner img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .visual-banner-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(13,36,68,0.85) 0%, rgba(26,60,107,0.7) 100%);
+        }
+
+        .visual-banner-content {
+            position: relative; z-index: 1;
+            text-align: center; padding: 0 20px; max-width: 700px;
+        }
+
+        .visual-banner-content h2 {
+            font-size: 2.4rem; font-weight: 800; color: white;
+            margin-bottom: 18px; line-height: 1.25;
+        }
+
+        .visual-banner-content p {
+            color: rgba(255,255,255,0.85); font-size: 1.1rem;
+            margin-bottom: 30px; line-height: 1.7;
+        }
+
+        /* ── WHY US ── */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .why-card {
+            background: white; border-radius: 14px;
+            padding: 30px 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            text-align: center; transition: all 0.3s;
+        }
+
+        .why-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(26,60,107,0.1); }
+
+        .why-icon {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin: 0 auto 18px;
+        }
+
+        .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+        .why-card p { color: var(--text-light); font-size: 0.88rem; line-height: 1.7; }
+
+        /* ── PROCESS ── */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0; position: relative;
+        }
+
+        .process-step {
+            text-align: center; padding: 30px 20px; position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute; right: -10px; top: 38px;
+            font-size: 1.5rem; color: var(--border);
+        }
+
+        .process-step:last-child::after { display: none; }
+
+        .step-num {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--navy); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: 800; margin: 0 auto 16px;
+        }
+
+        .process-step h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .process-step p { color: var(--text-light); font-size: 0.85rem; line-height: 1.6; }
+
+        /* ── FAQ ── */
+        .faq-list { max-width: 750px; margin: 0 auto; }
+
+        .faq-item {
+            border: 1px solid var(--border); border-radius: 12px;
+            margin-bottom: 12px; overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .faq-item.open { box-shadow: 0 4px 20px rgba(26,60,107,0.1); }
+
+        .faq-question {
+            width: 100%; text-align: left; padding: 20px 25px;
+            background: white; border: none; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.98rem; font-weight: 600; color: var(--text);
+            transition: background 0.2s;
+        }
+
+        .faq-item.open .faq-question { background: var(--navy); color: white; }
+
+        .faq-arrow { font-size: 1.1rem; transition: transform 0.3s; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            padding: 0 25px; background: white;
+            color: var(--text-light); font-size: 0.92rem; line-height: 1.8;
+        }
+
+        .faq-item.open .faq-answer { max-height: 300px; padding: 20px 25px; }
+
+        /* ── CONTACT ── */
+        .contact-inner {
+            display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: start;
+        }
+
+        .contact-info h2 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 15px; }
+        .contact-info p { color: var(--text-light); font-size: 1rem; line-height: 1.8; margin-bottom: 30px; }
+
+        .contact-items { list-style: none; }
+        .contact-items li {
+            display: flex; align-items: flex-start; gap: 14px;
+            margin-bottom: 20px; font-size: 0.95rem; color: var(--text);
+        }
+
+        .contact-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--bg-light); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: white; border-radius: 20px; padding: 40px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .contact-form h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 25px; color: var(--text); }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 12px 15px;
+            border: 2px solid var(--border); border-radius: 10px;
+            font-size: 0.92rem; font-family: 'Inter', sans-serif;
+            color: var(--text); transition: border-color 0.2s;
+            outline: none; background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--navy); }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .btn-submit {
+            width: 100%; padding: 14px;
+            background: var(--orange); color: white;
+            border: none; border-radius: 10px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+            padding: 80px 40px; text-align: center;
+        }
+
+        .cta-banner h2 { font-size: 2rem; font-weight: 800; color: white; margin-bottom: 15px; }
+        .cta-banner p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 35px; }
+
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #25d366; color: white;
+            padding: 16px 35px; border-radius: 10px;
+            text-decoration: none; font-weight: 700; font-size: 1.05rem;
+            transition: all 0.3s; box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+        }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0a1929; padding: 60px 40px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+            padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 30px;
+        }
+
+        .footer-brand .logo { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 15px; display: block; }
+        .footer-brand .logo span { color: var(--orange); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.8; margin-bottom: 20px; }
+
+        .footer-social { display: flex; gap: 10px; }
+        .social-btn {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: rgba(255,255,255,0.08); display: flex;
+            align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 0.9rem; transition: all 0.2s;
+        }
+        .social-btn:hover { background: var(--orange); color: white; }
+
+        .footer-col h4 { color: white; font-size: 0.92rem; font-weight: 700; margin-bottom: 18px; }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--orange); }
+
+        .footer-bottom {
+            max-width: 1100px; margin: 0 auto;
+            text-align: center; color: rgba(255,255,255,0.3); font-size: 0.82rem;
+        }
+
+        /* ── LANGUAGE ── */
+        .tr, .en, .fa { display: none; }
+        .show-tr .tr { display: block; }
+        .show-en .en { display: block; }
+        .show-fa .fa { display: block; }
+
+        .tri, .eni, .fai { display: none; }
+        .show-tr .tri { display: inline; }
+        .show-en .eni { display: inline; }
+        .show-fa .fai { display: inline; }
+
+        /* ── FLAGS STRIP ── */
+        .flags-strip {
+            background: var(--bg-light);
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .flags-strip-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+
+        .flags-label {
+            color: var(--text-light); font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .flags-row {
+            display: flex; flex-wrap: wrap;
+            justify-content: center; gap: 10px;
+        }
+
+        .flag-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: white; border: 1px solid var(--border);
+            padding: 8px 14px; border-radius: 30px;
+            font-size: 0.88rem; color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+
+        .flag-badge:hover {
+            border-color: var(--navy);
+            box-shadow: 0 4px 12px rgba(26,60,107,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ── ABOUT ── */
+        .about-section { padding: 90px 40px; background: white; }
+
+        .about-inner {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1.6fr;
+            gap: 60px; align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img-wrap img {
+            width: 100%; border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(26,60,107,0.2);
+            object-fit: cover; aspect-ratio: 3/4;
+            display: block;
+        }
+
+        .about-img-badge {
+            position: absolute; bottom: -15px; right: -15px;
+            background: var(--orange); color: white;
+            padding: 14px 20px; border-radius: 14px;
+            font-weight: 800; font-size: 1rem; text-align: center;
+            box-shadow: 0 6px 20px rgba(232,146,10,0.35);
+            line-height: 1.3;
+        }
+
+        .about-text h2 { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 18px; }
+        .about-text p { color: var(--text-light); font-size: 0.98rem; line-height: 1.85; margin-bottom: 25px; }
+
+        .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .about-tag {
+            background: var(--bg-light); color: var(--navy);
+            padding: 7px 16px; border-radius: 25px;
+            font-size: 0.85rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-right { display: none; }
+            .contact-inner { grid-template-columns: 1fr; }
+            .about-inner { grid-template-columns: 1fr; }
+            .about-img-wrap { max-width: 280px; margin: 0 auto; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .stat-item { padding: 0 25px; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 100px 20px 60px; }
+            .hero h1 { font-size: 2rem; }
+            .stats { flex-wrap: wrap; gap: 30px; }
+            .stat-item { border-right: none; }
+            .section { padding: 60px 20px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .process-step::after { display: none; }
+        }
+    </style>
+</head>
+<body class="show-tr">
+
+<!-- ── NAVBAR ── -->
+<nav>
+    <a href="#" class="nav-logo">Sara<span>.</span>Consulting</a>
+    <ul class="nav-links">
+        <li><a href="#services">
+            <span class="tri">Hizmetler</span>
+            <span class="eni">Services</span>
+            <span class="fai">خدمات</span>
+        </a></li>
+        <li><a href="#why">
+            <span class="tri">Neden Biz?</span>
+            <span class="eni">Why Us?</span>
+            <span class="fai">چرا ما؟</span>
+        </a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">
+            <span class="tri">İletişim</span>
+            <span class="eni">Contact</span>
+            <span class="fai">تماس</span>
+        </a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('tr', this)">🇹🇷 TR</button>
+            <button class="lang-btn" onclick="setLang('en', this)">🇬🇧 EN</button>
+            <button class="lang-btn" onclick="setLang('fa', this)">🇮🇷 FA</button>
+        </div>
+        <a href="https://wa.me/905453728190" class="nav-cta" target="_blank">
+            📱 <span class="tri">WhatsApp</span><span class="eni">WhatsApp</span><span class="fai">واتساپ</span>
+        </a>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-left">
+            <div class="hero-badge">
+                ⭐
+                <span class="tri">Türkiye'nin Güvenilir Danışmanlık Hizmeti</span>
+                <span class="eni">Turkey's Trusted Consulting Service</span>
+                <span class="fai">خدمات مشاوره معتمد ترکیه</span>
+            </div>
+            <h1>
+                <span class="tr">Türkiye'de <span>Yeni Bir Hayat</span> Kurmak İçin Yanınızdayız</span>
+                <span class="en">We're Here to Help You <span>Start a New Life</span> in Turkey</span>
+                <span class="fa">ما اینجاییم تا به شما کمک کنیم <span>زندگی جدیدی</span> در ترکیه بسازید</span>
+            </h1>
+            <p>
+                <span class="tr">Vatandaşlık, oturum izni, banka açılışı ve resmi tercümanlık hizmetlerinde 6 yılı aşkın deneyimle profesyonel destek.</span>
+                <span class="en">Professional support with over 6 years of experience in citizenship, residence permits, bank account opening, and official translation services.</span>
+                <span class="fa">پشتیبانی حرفه‌ای با بیش از ۶ سال تجربه در شهروندی، اجازه اقامت، افتتاح حساب بانکی و خدمات ترجمه رسمی.</span>
+            </p>
+            <div class="hero-btns">
+                <a href="https://wa.me/905453728190" class="btn-orange" target="_blank">
+                    📱
+                    <span class="tri">Ücretsiz Danışmanlık Al</span>
+                    <span class="eni">Get Free Consultation</span>
+                    <span class="fai">مشاوره رایگان بگیرید</span>
+                </a>
+                <a href="#services" class="btn-outline">
+                    <span class="tri">Hizmetleri Gör</span>
+                    <span class="eni">View Services</span>
+                    <span class="fai">مشاهده خدمات</span>
+                </a>
+            </div>
+            <div class="hero-langs">
+                <div class="hero-lang"><span>🇹🇷</span> Türkçe</div>
+                <div class="hero-lang"><span>🇬🇧</span> English</div>
+                <div class="hero-lang"><span>🇮🇷</span> فارسی</div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-card">
+                <h3>
+                    <span class="tr">✅ Sunduğumuz Hizmetler</span>
+                    <span class="en">✅ Our Services</span>
+                    <span class="fa">✅ خدمات ما</span>
+                </h3>
+                <ul class="hero-service-list">
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Vatandaşlık Başvurusu</span>
+                        <span class="eni">Citizenship Application</span>
+                        <span class="fai">درخواست شهروندی</span>
+                    </li>
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Oturum İzni</span>
+                        <span class="eni">Residence Permit</span>
+                        <span class="fai">اجازه اقامت</span>
+                    </li>
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Banka Hesabı Açılışı</span>
+                        <span class="eni">Bank Account Opening</span>
+                        <span class="fai">افتتاح حساب بانکی</span>
+                    </li>
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Adres Kaydı</span>
+                        <span class="eni">Address Registration</span>
+                        <span class="fai">ثبت آدرس</span>
+                    </li>
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Öğrenci Oturum Kartı</span>
+                        <span class="eni">Student Residence Card</span>
+                        <span class="fai">کارت اقامت دانشجویی</span>
+                    </li>
+                    <li>
+                        <div class="check">✓</div>
+                        <span class="tri">Yeminli Tercümanlık</span>
+                        <span class="eni">Sworn Translation</span>
+                        <span class="fai">ترجمه رسمی</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats">
+    <div class="stat-item">
+        <span class="stat-number">6+</span>
+        <div class="stat-label">
+            <span class="tri">Yıl Deneyim</span>
+            <span class="eni">Years Experience</span>
+            <span class="fai">سال تجربه</span>
+        </div>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <div class="stat-label">
+            <span class="tri">Mutlu Müşteri</span>
+            <span class="eni">Happy Clients</span>
+            <span class="fai">مشتری راضی</span>
+        </div>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">3</span>
+        <div class="stat-label">
+            <span class="tri">Farsça · İngilizce · Türkçe</span>
+            <span class="eni">Farsi · English · Turkish</span>
+            <span class="fai">فارسی · انگلیسی · ترکی</span>
+        </div>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">🌍</span>
+        <div class="stat-label">
+            <span class="tri">Dünya Geneli</span>
+            <span class="eni">Worldwide</span>
+            <span class="fai">سراسر جهان</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── FLAGS STRIP ── -->
+<section class="flags-strip">
+    <div class="flags-strip-inner">
+        <p class="flags-label">
+            <span class="tri">Müşterilerimizin Geldiği Ülkeler</span>
+            <span class="eni">Countries Our Clients Come From</span>
+            <span class="fai">کشورهایی که مشتریان ما از آن‌ها می‌آیند</span>
+        </p>
+        <div class="flags-row">
+            <div class="flag-badge">🇮🇷 <span class="tri">İran</span><span class="eni">Iran</span><span class="fai">ایران</span></div>
+            <div class="flag-badge">🇺🇦 <span class="tri">Ukrayna</span><span class="eni">Ukraine</span><span class="fai">اوکراین</span></div>
+            <div class="flag-badge">🇷🇺 <span class="tri">Rusya</span><span class="eni">Russia</span><span class="fai">روسیه</span></div>
+            <div class="flag-badge">🇦🇫 <span class="tri">Afganistan</span><span class="eni">Afghanistan</span><span class="fai">افغانستان</span></div>
+            <div class="flag-badge">🇦🇿 <span class="tri">Azerbaycan</span><span class="eni">Azerbaijan</span><span class="fai">آذربایجان</span></div>
+            <div class="flag-badge">🇬🇪 <span class="tri">Gürcistan</span><span class="eni">Georgia</span><span class="fai">گرجستان</span></div>
+            <div class="flag-badge">🇳🇬 <span class="tri">Nijerya</span><span class="eni">Nigeria</span><span class="fai">نیجریه</span></div>
+            <div class="flag-badge">🇸🇴 <span class="tri">Somali</span><span class="eni">Somalia</span><span class="fai">سومالی</span></div>
+            <div class="flag-badge">🇪🇹 <span class="tri">Etiyopya</span><span class="eni">Ethiopia</span><span class="fai">اتیوپی</span></div>
+            <div class="flag-badge">🇵🇰 <span class="tri">Pakistan</span><span class="eni">Pakistan</span><span class="fai">پاکستان</span></div>
+            <div class="flag-badge">🌍 <span class="tri">ve daha fazlası...</span><span class="eni">and more...</span><span class="fai">و بیشتر...</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+    <div class="about-inner">
+        <div class="about-img-wrap">
+            <img src="sara.jpg" alt="Sara - Türkiye Danışmanlık">
+            <div class="about-img-badge">
+                6+ <span class="tri">Yıl<br>Deneyim</span>
+                <span class="eni">Years<br>Exp.</span>
+                <span class="fai">سال<br>تجربه</span>
+            </div>
+        </div>
+        <div class="about-text">
+            <div class="section-tag" style="margin-bottom:14px">
+                <span class="tri">Hakkımda</span>
+                <span class="eni">About Me</span>
+                <span class="fai">درباره من</span>
+            </div>
+            <h2>
+                <span class="tr">Merhaba, Ben Sara</span>
+                <span class="en">Hi, I'm Sara</span>
+                <span class="fa">سلام، من سارام</span>
+            </h2>
+            <p>
+                <span class="tr">İran'da İngilizce Tercümanlık lisansımı tamamladıktan sonra Türkiye'ye yerleştim. Sigorta sektöründe edindiğim deneyim ve Türk vatandaşlığı sürecimden öğrendiklerimi bugün yüzlerce müşterime aktarıyorum.</span>
+                <span class="en">After completing my degree in English Translation in Iran, I settled in Turkey. I now share the experience I gained in the insurance sector and what I learned during my own Turkish citizenship process with hundreds of clients.</span>
+                <span class="fa">پس از اتمام مدرک ترجمه انگلیسی در ایران، در ترکیه مستقر شدم. تجربه‌ای که در بخش بیمه کسب کردم و آنچه در جریان شهروندی ترکیه خودم آموختم را امروز با صدها مشتری به اشتراک می‌گذارم.</span>
+            </p>
+            <p>
+                <span class="tr">Dünyanın dört bir yanından gelen müşterilere Türkçe, İngilizce ve Farsça olarak hizmet veriyorum. Her müşteri benim için özel — büyük ofisler gibi değil, kişisel ilgi gösteriyorum.</span>
+                <span class="en">I serve clients from all corners of the world in Turkish, English, and Farsi. Every client is special to me — unlike big offices, I provide personal attention.</span>
+                <span class="fa">به مشتریان از سراسر جهان به ترکی، انگلیسی و فارسی خدمات می‌دهم. هر مشتری برای من خاص است — برخلاف دفاتر بزرگ، توجه شخصی می‌کنم.</span>
+            </p>
+            <div class="about-tags">
+                <span class="about-tag">🇹🇷 Türkçe</span>
+                <span class="about-tag">🇬🇧 English</span>
+                <span class="about-tag">🇮🇷 فارسی</span>
+                <span class="about-tag">🎓 Tercümanlık Lisansı</span>
+                <span class="about-tag">🏦 Sigorta Deneyimi</span>
+                <span class="about-tag">✅ Türk Vatandaşı</span>
+            </div>
+            <a href="https://wa.me/905453728190" class="btn-orange" target="_blank" style="display:inline-flex">
+                📱
+                <span class="tri">Hemen Yazın</span>
+                <span class="eni">Message Now</span>
+                <span class="fai">همین الان پیام دهید</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="section section-alt" id="services">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag">
+                <span class="tri">Hizmetler</span>
+                <span class="eni">Services</span>
+                <span class="fai">خدمات</span>
+            </div>
+            <h2>
+                <span class="tr">Neler Yapıyoruz?</span>
+                <span class="en">What We Offer</span>
+                <span class="fa">چه خدماتی ارائه می‌دهیم؟</span>
+            </h2>
+            <p>
+                <span class="tr">Türkiye'de yeni bir hayata başlamak için ihtiyacınız olan her hizmet tek çatı altında.</span>
+                <span class="en">Everything you need to start a new life in Turkey, under one roof.</span>
+                <span class="fa">همه آنچه برای شروع زندگی جدید در ترکیه نیاز دارید، زیر یک سقف.</span>
+            </p>
+        </div>
+        <div class="services-grid">
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=600&h=180&fit=crop&auto=format" alt="Citizenship" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">🇹🇷</div>
+                    <h3>
+                        <span class="tr">Vatandaşlık Başvurusu</span>
+                        <span class="en">Citizenship Application</span>
+                        <span class="fa">درخواست شهروندی</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Türk vatandaşlığı için gerekli tüm belgelerin hazırlanması ve başvuru sürecinin uçtan uca takibi.</span>
+                        <span class="en">Preparation of all required documents and end-to-end tracking of the Turkish citizenship application process.</span>
+                        <span class="fa">تهیه کلیه اسناد لازم و پیگیری کامل فرآیند درخواست شهروندی ترکیه.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=180&fit=crop&auto=format" alt="Residence" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">🏠</div>
+                    <h3>
+                        <span class="tr">Oturum İzni</span>
+                        <span class="en">Residence Permit</span>
+                        <span class="fa">اجازه اقامت</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Kısa ve uzun süreli oturum izni başvurusu, yenileme ve itiraz süreçlerinde tam destek.</span>
+                        <span class="en">Full support for short and long-term residence permit applications, renewals, and appeals.</span>
+                        <span class="fa">پشتیبانی کامل برای درخواست، تمدید و اعتراض اجازه اقامت کوتاه و بلند مدت.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=180&fit=crop&auto=format" alt="Bank" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">🏦</div>
+                    <h3>
+                        <span class="tr">Banka Hesabı Açılışı</span>
+                        <span class="en">Bank Account Opening</span>
+                        <span class="fa">افتتاح حساب بانکی</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Türkiye'deki büyük bankalarda yabancılar için hesap açma sürecinde rehberlik ve destek.</span>
+                        <span class="en">Guidance and support for opening accounts for foreigners at major banks in Turkey.</span>
+                        <span class="fa">راهنمایی و پشتیبانی برای افتتاح حساب برای خارجی‌ها در بانک‌های بزرگ ترکیه.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&h=180&fit=crop&auto=format" alt="Istanbul" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">📍</div>
+                    <h3>
+                        <span class="tr">Adres Kaydı</span>
+                        <span class="en">Address Registration</span>
+                        <span class="fa">ثبت آدرس</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Türkiye'de resmi ikametgah adresi tescili ve nüfus müdürlüğü işlemlerinde yardım.</span>
+                        <span class="en">Help with official residence address registration and civil registry office procedures in Turkey.</span>
+                        <span class="fa">کمک در ثبت آدرس اقامت رسمی و مراحل اداره ثبت احوال در ترکیه.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&h=180&fit=crop&auto=format" alt="Student" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">🎓</div>
+                    <h3>
+                        <span class="tr">Öğrenci Oturum Kartı</span>
+                        <span class="en">Student Residence Card</span>
+                        <span class="fa">کارت اقامت دانشجویی</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Türkiye'de eğitim gören öğrenciler için oturum kartı başvuru ve yenileme işlemleri.</span>
+                        <span class="en">Residence card application and renewal procedures for students studying in Turkey.</span>
+                        <span class="fa">مراحل درخواست و تمدید کارت اقامت برای دانشجویان در حال تحصیل در ترکیه.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=180&fit=crop&auto=format" alt="Translation" class="service-img">
+                <div class="service-body">
+                    <div class="service-icon-wrap">📄</div>
+                    <h3>
+                        <span class="tr">Yeminli Tercümanlık</span>
+                        <span class="en">Sworn Translation</span>
+                        <span class="fa">ترجمه رسمی</span>
+                    </h3>
+                    <p>
+                        <span class="tr">Türkçe, İngilizce ve Farsça arasında resmi belge çevirisi. Pasaport, diploma, sözleşme ve daha fazlası.</span>
+                        <span class="en">Official document translation between Turkish, English, and Farsi. Passports, diplomas, contracts, and more.</span>
+                        <span class="fa">ترجمه رسمی اسناد بین ترکی، انگلیسی و فارسی. پاسپورت، دیپلم، قرارداد و موارد دیگر.</span>
+                    </p>
+                    <a href="https://wa.me/905453728190" class="service-link" target="_blank">
+                        <span class="tri">Bilgi Al →</span><span class="eni">Learn More →</span><span class="fai">اطلاعات بیشتر →</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── VISUAL BANNER ── -->
+<section class="visual-banner">
+    <img src="https://images.unsplash.com/photo-1541432901735-e56d6b046dff?w=1400&h=420&fit=crop&auto=format" alt="Istanbul Turkey">
+    <div class="visual-banner-overlay"></div>
+    <div class="visual-banner-content">
+        <h2>
+            <span class="tr">Türkiye'de Yeni Bir Hayatın Kapılarını Açıyoruz</span>
+            <span class="en">Opening the Doors to a New Life in Turkey</span>
+            <span class="fa">درهای زندگی جدیدی در ترکیه را برای شما می‌گشاییم</span>
+        </h2>
+        <p>
+            <span class="tr">6 yılı aşkın deneyim ve yüzlerce başarılı başvuruyla güvenilir danışmanlık.</span>
+            <span class="en">Reliable consulting with over 6 years of experience and hundreds of successful applications.</span>
+            <span class="fa">مشاوره قابل اعتماد با بیش از ۶ سال تجربه و صدها درخواست موفق.</span>
+        </p>
+        <a href="https://wa.me/905453728190" class="btn-whatsapp" target="_blank">
+            📱
+            <span class="tri">Ücretsiz Danışmanlık Al</span>
+            <span class="eni">Get Free Consultation</span>
+            <span class="fai">مشاوره رایگان بگیرید</span>
+        </a>
+    </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section class="section" id="why">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag">
+                <span class="tri">Neden Biz</span>
+                <span class="eni">Why Choose Us</span>
+                <span class="fai">چرا ما را انتخاب کنید</span>
+            </div>
+            <h2>
+                <span class="tr">Neden Sara Consulting?</span>
+                <span class="en">Why Sara Consulting?</span>
+                <span class="fa">چرا سارا کانسالتینگ؟</span>
+            </h2>
+        </div>
+        <div class="why-grid">
+
+            <div class="why-card">
+                <div class="why-icon">🌍</div>
+                <h3>
+                    <span class="tr">3 Dil Desteği</span>
+                    <span class="en">3 Language Support</span>
+                    <span class="fa">پشتیبانی ۳ زبانه</span>
+                </h3>
+                <p>
+                    <span class="tr">Türkçe, İngilizce ve Farsça ile iletişim kurabilirsiniz. Dil engeli olmadan hizmet.</span>
+                    <span class="en">Communicate in Turkish, English, and Farsi. Service without language barriers.</span>
+                    <span class="fa">به ترکی، انگلیسی و فارسی ارتباط برقرار کنید. خدمات بدون مانع زبانی.</span>
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>
+                    <span class="tr">Hızlı Sonuç</span>
+                    <span class="en">Fast Results</span>
+                    <span class="fa">نتایج سریع</span>
+                </h3>
+                <p>
+                    <span class="tr">Gereksiz bekleme yok. Başvurularınız öncelikli olarak takip edilir ve hızlı sonuçlandırılır.</span>
+                    <span class="en">No unnecessary waiting. Your applications are tracked as a priority and completed quickly.</span>
+                    <span class="fa">انتظار غیرضروری وجود ندارد. درخواست‌های شما با اولویت پیگیری و سریع تکمیل می‌شوند.</span>
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🔒</div>
+                <h3>
+                    <span class="tr">Güvenilir & Şeffaf</span>
+                    <span class="en">Reliable & Transparent</span>
+                    <span class="fa">قابل اعتماد و شفاف</span>
+                </h3>
+                <p>
+                    <span class="tr">Sürecin her adımında bilgilendirilirsiniz. Gizli ücret yok, sürpriz yok.</span>
+                    <span class="en">You are informed at every step of the process. No hidden fees, no surprises.</span>
+                    <span class="fa">در هر مرحله از فرآیند مطلع می‌شوید. بدون هزینه پنهان، بدون غافلگیری.</span>
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🤝</div>
+                <h3>
+                    <span class="tr">Kişisel Hizmet</span>
+                    <span class="en">Personal Service</span>
+                    <span class="fa">خدمات شخصی</span>
+                </h3>
+                <p>
+                    <span class="tr">Büyük ofisler gibi değil — Sara bizzat ilgilenir. Doğrudan iletişim, kişisel çözüm.</span>
+                    <span class="en">Not like big offices — Sara handles it personally. Direct communication, personal solutions.</span>
+                    <span class="fa">نه مثل دفاتر بزرگ — سارا شخصاً رسیدگی می‌کند. ارتباط مستقیم، راه‌حل شخصی.</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="section section-alt">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag">
+                <span class="tri">Süreç</span>
+                <span class="eni">Process</span>
+                <span class="fai">فرآیند</span>
+            </div>
+            <h2>
+                <span class="tr">Nasıl Çalışıyoruz?</span>
+                <span class="en">How Do We Work?</span>
+                <span class="fa">چطور کار می‌کنیم؟</span>
+            </h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-num">1</div>
+                <h3>
+                    <span class="tr">İletişime Geçin</span>
+                    <span class="en">Contact Us</span>
+                    <span class="fa">تماس بگیرید</span>
+                </h3>
+                <p>
+                    <span class="tr">WhatsApp veya formu doldurun.</span>
+                    <span class="en">WhatsApp or fill the form.</span>
+                    <span class="fa">واتساپ یا فرم را پر کنید.</span>
+                </p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">2</div>
+                <h3>
+                    <span class="tr">Ücretsiz Görüşme</span>
+                    <span class="en">Free Consultation</span>
+                    <span class="fa">مشاوره رایگان</span>
+                </h3>
+                <p>
+                    <span class="tr">Durumunuzu değerlendiririz.</span>
+                    <span class="en">We assess your situation.</span>
+                    <span class="fa">وضعیت شما را ارزیابی می‌کنیم.</span>
+                </p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">3</div>
+                <h3>
+                    <span class="tr">Belge Toplama</span>
+                    <span class="en">Document Collection</span>
+                    <span class="fa">جمع‌آوری اسناد</span>
+                </h3>
+                <p>
+                    <span class="tr">Gerekli evrakları birlikte hazırlarız.</span>
+                    <span class="en">We prepare the required documents together.</span>
+                    <span class="fa">اسناد لازم را با هم آماده می‌کنیم.</span>
+                </p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">4</div>
+                <h3>
+                    <span class="tr">Başvuru & Takip</span>
+                    <span class="en">Apply & Track</span>
+                    <span class="fa">درخواست و پیگیری</span>
+                </h3>
+                <p>
+                    <span class="tr">Başvuruyu yapar, sonuçlanana kadar takip ederiz.</span>
+                    <span class="en">We apply and track until completion.</span>
+                    <span class="fa">درخواست می‌دهیم و تا تکمیل پیگیری می‌کنیم.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section" id="faq">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag">FAQ</div>
+            <h2>
+                <span class="tr">Sıkça Sorulan Sorular</span>
+                <span class="en">Frequently Asked Questions</span>
+                <span class="fa">سوالات متداول</span>
+            </h2>
+        </div>
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span class="tr">Türk vatandaşlığı almak ne kadar sürer?</span>
+                    <span class="en">How long does it take to get Turkish citizenship?</span>
+                    <span class="fa">دریافت شهروندی ترکیه چقدر طول می‌کشد؟</span>
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <span class="tr">Yatırım yoluyla vatandaşlık genellikle 3-6 ay sürer. Evlilik yoluyla ise 3 yıl ikamet şartı aranmaktadır. Durumunuza göre detaylı bilgi için bize ulaşın.</span>
+                    <span class="en">Citizenship through investment typically takes 3-6 months. Through marriage, a 3-year residency requirement applies. Contact us for detailed information based on your situation.</span>
+                    <span class="fa">شهروندی از طریق سرمایه‌گذاری معمولاً ۳-۶ ماه طول می‌کشد. از طریق ازدواج، شرط ۳ سال اقامت اعمال می‌شود. برای اطلاعات دقیق بر اساس وضعیت خود با ما تماس بگیرید.</span>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span class="tr">Türkiye'de banka hesabı açmak için ne gerekir?</span>
+                    <span class="en">What is needed to open a bank account in Turkey?</span>
+                    <span class="fa">برای افتتاح حساب بانکی در ترکیه چه چیزی لازم است؟</span>
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <span class="tr">Genellikle pasaport, vergi numarası ve ikametgah belgesi yeterlidir. Bazı bankalar ek belge isteyebilir. Süreci sizin için kolaylaştırıyoruz.</span>
+                    <span class="en">Generally, a passport, tax number, and residence document are sufficient. Some banks may request additional documents. We make the process easier for you.</span>
+                    <span class="fa">معمولاً پاسپورت، شماره مالیاتی و سند اقامت کافی است. برخی بانک‌ها ممکن است اسناد اضافی بخواهند. ما این فرآیند را برای شما آسان‌تر می‌کنیم.</span>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span class="tr">Hizmetler uzaktan sunuluyor mu?</span>
+                    <span class="en">Are services provided remotely?</span>
+                    <span class="fa">آیا خدمات به صورت از راه دور ارائه می‌شود؟</span>
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <span class="tr">Evet, WhatsApp üzerinden tamamen uzaktan hizmet sunuyoruz. Belge paylaşımı ve takip dijital ortamda yapılmaktadır.</span>
+                    <span class="en">Yes, we provide fully remote service via WhatsApp. Document sharing and tracking are done digitally.</span>
+                    <span class="fa">بله، خدمات کاملاً از راه دور از طریق واتساپ ارائه می‌دهیم. اشتراک‌گذاری اسناد و پیگیری به صورت دیجیتال انجام می‌شود.</span>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span class="tr">Hangi ülke vatandaşlarına hizmet veriyorsunuz?</span>
+                    <span class="en">Which nationalities do you serve?</span>
+                    <span class="fa">به اتباع کدام کشورها خدمات ارائه می‌دهید؟</span>
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <span class="tr">Başta İran, Ukrayna ve Afrika ülkelerinden olmak üzere tüm yabancı uyruklu kişilere hizmet veriyoruz.</span>
+                    <span class="en">We serve all foreign nationals, primarily from Iran, Ukraine, and African countries.</span>
+                    <span class="fa">به همه اتباع خارجی، عمدتاً از ایران، اوکراین و کشورهای آفریقایی خدمات ارائه می‌دهیم.</span>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span class="tr">Ücretler nasıl belirleniyor?</span>
+                    <span class="en">How are fees determined?</span>
+                    <span class="fa">هزینه‌ها چگونه تعیین می‌شوند؟</span>
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <span class="tr">Hizmet türüne ve karmaşıklığına göre değişmektedir. İlk görüşme ücretsizdir. Fiyat teklifi için WhatsApp'tan yazın.</span>
+                    <span class="en">It varies depending on the type and complexity of the service. The first consultation is free. Write on WhatsApp for a price quote.</span>
+                    <span class="fa">بسته به نوع و پیچیدگی خدمات متفاوت است. اولین مشاوره رایگان است. برای دریافت پیش‌نویس قیمت در واتساپ بنویسید.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="section section-alt" id="contact">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag">
+                <span class="tri">İletişim</span>
+                <span class="eni">Contact</span>
+                <span class="fai">تماس</span>
+            </div>
+            <h2>
+                <span class="tr">Ücretsiz Görüşme Talep Edin</span>
+                <span class="en">Request a Free Consultation</span>
+                <span class="fa">درخواست مشاوره رایگان</span>
+            </h2>
+        </div>
+        <div class="contact-inner">
+            <div class="contact-info">
+                <h2>
+                    <span class="tr">Bizimle İletişime Geçin</span>
+                    <span class="en">Get in Touch With Us</span>
+                    <span class="fa">با ما در تماس باشید</span>
+                </h2>
+                <p>
+                    <span class="tr">Sorularınız için WhatsApp üzerinden veya formu doldurarak bize ulaşabilirsiniz. En kısa sürede dönüş yapıyoruz.</span>
+                    <span class="en">You can reach us via WhatsApp or by filling out the form. We respond as soon as possible.</span>
+                    <span class="fa">می‌توانید از طریق واتساپ یا با پر کردن فرم با ما تماس بگیرید. در اسرع وقت پاسخ می‌دهیم.</span>
+                </p>
+                <ul class="contact-items">
+                    <li>
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>WhatsApp</strong><br>
+                            <span style="color: var(--text-light);">+90 545 372 81 90</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">🌍</div>
+                        <div>
+                            <strong>
+                                <span class="tr">Diller</span>
+                                <span class="en">Languages</span>
+                                <span class="fa">زبان‌ها</span>
+                            </strong><br>
+                            <span style="color: var(--text-light);">Türkçe · English · فارسی</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <strong>
+                                <span class="tr">Çalışma Saatleri</span>
+                                <span class="en">Working Hours</span>
+                                <span class="fa">ساعات کاری</span>
+                            </strong><br>
+                            <span style="color: var(--text-light);">
+                                <span class="tr">Hafta içi 09:00 - 18:00</span>
+                                <span class="en">Weekdays 09:00 - 18:00</span>
+                                <span class="fa">روزهای هفته ۹:۰۰ - ۱۸:۰۰</span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact-form">
+                <h3>
+                    <span class="tr">Mesaj Gönderin</span>
+                    <span class="en">Send a Message</span>
+                    <span class="fa">پیام بفرستید</span>
+                </h3>
+                <form onsubmit="submitForm(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                <span class="tr">Adınız</span>
+                                <span class="en">Your Name</span>
+                                <span class="fa">نام شما</span>
+                            </label>
+                            <input type="text" required placeholder="Sara">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="tr">Telefon</span>
+                                <span class="en">Phone</span>
+                                <span class="fa">تلفن</span>
+                            </label>
+                            <input type="tel" required placeholder="+90 ...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="tr">Hizmet Seçin</span>
+                            <span class="en">Select Service</span>
+                            <span class="fa">خدمات را انتخاب کنید</span>
+                        </label>
+                        <select required>
+                            <option value="" disabled selected>--</option>
+                            <option>
+                                <span class="tr">Vatandaşlık Başvurusu</span>
+                                <span class="en">Citizenship Application</span>
+                            </option>
+                            <option>Oturum İzni / Residence Permit</option>
+                            <option>Banka Hesabı / Bank Account</option>
+                            <option>Adres Kaydı / Address Registration</option>
+                            <option>Öğrenci Oturum / Student Residence</option>
+                            <option>Yeminli Tercüme / Sworn Translation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="tr">Mesajınız</span>
+                            <span class="en">Your Message</span>
+                            <span class="fa">پیام شما</span>
+                        </label>
+                        <textarea placeholder="..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <span class="tri">WhatsApp ile Gönder 📱</span>
+                        <span class="eni">Send via WhatsApp 📱</span>
+                        <span class="fai">ارسال از طریق واتساپ 📱</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-banner">
+    <h2>
+        <span class="tr">Hemen Başlayalım!</span>
+        <span class="en">Let's Get Started!</span>
+        <span class="fa">بیایید شروع کنیم!</span>
+    </h2>
+    <p>
+        <span class="tr">Türkiye'deki yolculuğunuz için yanınızdayız. İlk görüşme ücretsiz!</span>
+        <span class="en">We're here for your journey in Turkey. First consultation is free!</span>
+        <span class="fa">ما برای سفر شما در ترکیه اینجاییم. اولین مشاوره رایگان است!</span>
+    </p>
+    <a href="https://wa.me/905453728190" class="btn-whatsapp" target="_blank">
+        📱
+        <span class="tri">WhatsApp ile Yazın</span>
+        <span class="eni">Message on WhatsApp</span>
+        <span class="fai">پیام در واتساپ</span>
+    </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="logo">Sara<span>.</span>Consulting</span>
+            <p>
+                <span class="tr">Türkiye'de vatandaşlık, oturum, banka ve tercümanlık hizmetlerinde güvenilir danışmanlık.</span>
+                <span class="en">Reliable consulting in citizenship, residence, banking, and translation services in Turkey.</span>
+                <span class="fa">مشاوره قابل اعتماد در شهروندی، اقامت، بانکداری و خدمات ترجمه در ترکیه.</span>
+            </p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/saraconsulting" class="social-btn" target="_blank">📸</a>
+                <a href="https://wa.me/905453728190" class="social-btn" target="_blank">📱</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>
+                <span class="tr">Hizmetler</span>
+                <span class="en">Services</span>
+                <span class="fa">خدمات</span>
+            </h4>
+            <ul class="footer-links">
+                <li><a href="#services">
+                    <span class="tr">Vatandaşlık</span>
+                    <span class="en">Citizenship</span>
+                    <span class="fa">شهروندی</span>
+                </a></li>
+                <li><a href="#services">
+                    <span class="tr">Oturum İzni</span>
+                    <span class="en">Residence Permit</span>
+                    <span class="fa">اجازه اقامت</span>
+                </a></li>
+                <li><a href="#services">
+                    <span class="tr">Banka Hesabı</span>
+                    <span class="en">Bank Account</span>
+                    <span class="fa">حساب بانکی</span>
+                </a></li>
+                <li><a href="#services">
+                    <span class="tr">Adres Kaydı</span>
+                    <span class="en">Address Registration</span>
+                    <span class="fa">ثبت آدرس</span>
+                </a></li>
+                <li><a href="#services">
+                    <span class="tr">Tercümanlık</span>
+                    <span class="en">Translation</span>
+                    <span class="fa">ترجمه</span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>
+                <span class="tr">Hızlı Erişim</span>
+                <span class="en">Quick Links</span>
+                <span class="fa">دسترسی سریع</span>
+            </h4>
+            <ul class="footer-links">
+                <li><a href="#why">
+                    <span class="tr">Neden Biz?</span>
+                    <span class="en">Why Us?</span>
+                    <span class="fa">چرا ما؟</span>
+                </a></li>
+                <li><a href="#faq">
+                    <span class="tr">Sık Sorulanlar</span>
+                    <span class="en">FAQ</span>
+                    <span class="fa">سوالات متداول</span>
+                </a></li>
+                <li><a href="#contact">
+                    <span class="tr">İletişim</span>
+                    <span class="en">Contact</span>
+                    <span class="fa">تماس</span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>
+                <span class="tr">İletişim</span>
+                <span class="en">Contact</span>
+                <span class="fa">تماس</span>
+            </h4>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/905453728190" target="_blank">📱 +90 545 372 81 90</a></li>
+                <li><a href="https://www.instagram.com/saraconsulting" target="_blank">📸 @saraconsulting</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Sara Consulting | Turkey Residency & Citizenship Services</p>
+    </div>
+</footer>
+
+<script>
+    function setLang(lang, btn) {
+        document.body.className = 'show-' + lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+    }
+
+    function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    }
+
+    function submitForm(e) {
+        e.preventDefault();
+        const form = e.target;
+        const name    = form.querySelector('input[type="text"]').value;
+        const phone   = form.querySelector('input[type="tel"]').value;
+        const service = form.querySelector('select').value;
+        const message = form.querySelector('textarea').value;
+
+        const text = `Merhaba Sara Hanım,\n\n` +
+                     `Ad: ${name}\n` +
+                     `Telefon: ${phone}\n` +
+                     `Hizmet: ${service}\n` +
+                     `Mesaj: ${message}`;
+
+        const url = 'https://wa.me/905453728190?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
+</html>
